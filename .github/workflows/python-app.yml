@@ -30,6 +30,17 @@ jobs:
         pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+    #7 build
+    - name: Create project build
+      run: |
+        zip -r build.zip . -x ".git/*" ".github/*" "venv/*"
+    
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: flask-build
+        path: build.zip
+        
     #8 
     - name: Unit tests
       env:
