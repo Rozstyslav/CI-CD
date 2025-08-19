@@ -1,9 +1,11 @@
 name: Python application
 
 on:
+  # 1 Push
   push:
     branches: [ "main" ]
-  
+
+  # 2 Manual mode
   workflow_dispatch:
   
 jobs:
