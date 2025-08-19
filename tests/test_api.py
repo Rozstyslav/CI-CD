@@ -50,7 +50,7 @@ def test_products_crud_flow(client):
     assert item["name"] == "Sugar"
     assert item["price"] == 32
 
-    r = client.put(f"/api/products/{pid}", data=json.dumps({"price": 40}), content_type="application/json")
+    r = client.patch(f"/api/products/{pid}", data=json.dumps({"price": 40}), content_type="application/json")
     assert r.status_code in (200, 204)
 
     r = client.get(f"/api/products/{pid}")
@@ -61,6 +61,5 @@ def test_products_crud_flow(client):
     r = client.delete(f"/api/products/{pid}")
     assert r.status_code in (200, 204)
 
-    # 8) GET by id -> 404/410
     r = client.get(f"/api/products/{pid}")
     assert r.status_code in (404, 410)
