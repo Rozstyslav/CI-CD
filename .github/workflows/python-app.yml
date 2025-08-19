@@ -26,11 +26,12 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pytest build
+        pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Build proj
       run: |
+        pip install build
         python -m build
         ls -l dist || true
         
