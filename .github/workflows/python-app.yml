@@ -4,6 +4,8 @@ on:
   # 1 Push
   push:
     branches: [ "main" ]
+  pull_request:
+    types: [opened, synchronize]
 
   # 2 Manual mode
   workflow_dispatch:
