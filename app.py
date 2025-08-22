@@ -41,12 +41,12 @@ class Product(Resource):
         if product:
             return product.to_dict()
         else:
-            return {"error": "Product not found."}, 404
+            return {"error": f"{product_id} not found."}, 404
 
     def patch(self, product_id):
         product = get_product_by_id(product_id)
         if not product:
-            return {"error": "Product not found."}, 404
+            return {"error": f"{product_id} not found."}, 404
 
         parser = reqparse.RequestParser()
         parser.add_argument("name", type=str)
@@ -65,7 +65,7 @@ class Product(Resource):
     def delete(self, product_id):
         product = get_product_by_id(product_id)
         if not product:
-            return {"error": "Product not found."}, 404
+            return {"error": f"{product_id} not found."}, 404
         delete_product(product_id)
 
         return {"message": "Product deleted."}, 200
