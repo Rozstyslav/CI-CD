@@ -79,8 +79,14 @@ api.add_resource(Product, "/api/products/<int:product_id>")
 
 if __name__ == "__main__":
     def ipv4_or_localhost_regex_type(arg_value):
-        ipv4_or_localhost_regex = re.compile(
-            r"^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(\.)){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$|^(localhost|127(\.[0-9]+){0,2}\.[0-9]+)$")
+        ipv4_or_localhost_regex = (re.compile
+        (
+            r"^(?:"
+            r"(?:25[0-5]|2[0-4]\d|1?\d{1,2})(?:\.(?:25[0-5]|2[0-4]\d|1?\d{1,2})){3}"  
+            r"|localhost"                                                              
+            r"|127(?:\.\d{1,3}){1,3}"                                                  
+            r")$"
+        ))
         if not ipv4_or_localhost_regex.match(arg_value):
             raise argparse.ArgumentTypeError("invalid ipv4 or localhost value")
         return arg_value

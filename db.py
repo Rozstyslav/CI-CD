@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import SqliteDatabase, Model, IntegerField, CharField, DoesNotExist
 import argparse
 
 # Define the database and the model
